@@ -7,6 +7,8 @@ class Operation_job1():
     
 an_operation = Operation_job1()
 print(an_operation)
+print(an_operation.number1)
+print(an_operation.number2)
 
 """
 Job 1 to 3
