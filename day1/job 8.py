@@ -9,9 +9,16 @@ class Circle():
         self.circumference = self.get_circumference()
         self.area = self.get_area()
     
+    # def update_information(self):
+    #     self.diameter = self.get_diameter()
+    #     self.circumference = self.get_circumference()
+    #     self.area = self.get_area()
+    
     def change_radius(self, new_radius):
         self.radius = new_radius
-    
+        # self.update_information()
+        self.__init__(self.radius)
+
     def get_diameter(self):
         diameter = self.radius * 2
         return diameter
@@ -30,12 +37,14 @@ class Circle():
     def __str__(self):
         print(f"Le cercle fait {self.radius} de rayon\
               \nSa circonférence est de {self.circumference}\
-              \nSon diamètre est de {self.circumference}\
+              \nSon diamètre est de {self.diameter}\
               \nSon aire est de {self.area}")
         
 circle1 = Circle(4)
 circle1.display_info()
+print("\n")
 circle1.change_radius(8)
 circle1.display_info()
+print("\n")
 circle2 = Circle(7)
 circle2.display_info()
