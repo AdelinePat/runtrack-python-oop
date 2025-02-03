@@ -6,11 +6,11 @@ class Product():
     def __init__(self, name, priceExludeTaxes, VAT):
         self.name = name
         self.priceExludeTaxes = priceExludeTaxes
-        self.VAT = VAT
+        self.VAT = VAT / 100
         self.price = self.calculate_full_price()
 
     def calculate_full_price(self):
-        full_price = self.priceExludeTaxes + (self.priceExludeTaxes / 100) * self.VAT
+        full_price = self.priceExludeTaxes + (self.priceExludeTaxes * self.VAT) 
         return full_price
     
     def change_name(self, new_name):
@@ -18,24 +18,40 @@ class Product():
 
     def change_priceExludeTaxes(self, new_price):
         self.priceExludeTaxes = new_price
+        self.price = self.calculate_full_price()
+
+    def change_PriceWithTaxes(self, new_price):
+        self.price = new_price
+        self.priceExludeTaxes = self.calculate_priceExcludeTaxes()
+
+    def calculate_priceExcludeTaxes(self):
+        priceExludeTaxes = self.price / (1+ self.VAT)
+        return priceExludeTaxes
 
     def display_info(self):
-        self.__str__()
+        self.__str__() 
 
     def __str__(self):
-        print(f"Nom : {self.name}\
+        return f"Nom : {self.name}\
               \nPrix HT : {self.priceExludeTaxes}\
-              \nTVA : {self.VAT}\
-              \nPrix TTC : {self.price}")
+              \nTVA : {int(self.VAT * 100)}%\
+              \nPrix TTC : {self.price}"
 
 chips = Product("chips", 5, 20)
-café = Product("chips", 3, 15)
+café = Product("café", 3, 15)
 
-chips.display_info()
+# chips.display_info()
+print(chips)
 chips.change_priceExludeTaxes(10)
-
-café.display_info()
+print("\n")
+# café.display_info()
+print(café)
+print("\n")
 café.change_name("Mocha")
+café.change_PriceWithTaxes(8)
 
-chips.display_info()
-café.display_info()
+# chips.display_info()
+print(chips)
+print("\n")
+# café.display_info()
+print(café)
