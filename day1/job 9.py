@@ -29,7 +29,7 @@ class Product():
         return priceExludeTaxes
 
     def display_info(self):
-        self.__str__() 
+        return self.__str__()
 
     def __str__(self):
         return f"Nom : {self.name}\
@@ -40,18 +40,16 @@ class Product():
 chips = Product("chips", 5, 20)
 café = Product("café", 3, 15)
 
-# chips.display_info()
-print(chips)
+print(chips.display_info())
 chips.change_priceExludeTaxes(10)
+
 print("\n")
-# café.display_info()
-print(café)
+print(café.display_info())
+
 print("\n")
 café.change_name("Mocha")
-café.change_PriceWithTaxes(8)
-
-# chips.display_info()
+café.change_PriceWithTaxes(9)
 print(chips)
+
 print("\n")
-# café.display_info()
 print(café)
