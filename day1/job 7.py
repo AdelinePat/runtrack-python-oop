@@ -1,6 +1,5 @@
 import string
 
-
 print("\n=== JOB 7 ===")
 """
 Job 7
@@ -11,31 +10,29 @@ class Character():
         self.y = y
         self.sign = "X"
 
+    def __str__(self):
+        return f"la position actuelle du personnage est : {little_one.position()}"
+    
     def move_up(self, board):
         self.clear_previous_emplacement(board)
         if self.y > 1:
             self.y -= 1
-            # self.update_board(board)
             board.update_board(self)
         else: 
             print("\n vous ne pouvez pas monter plus haut")
         
-    
     def move_down(self, board):
         self.clear_previous_emplacement(board)
         if self.y < len(board.board)-1:
             self.y += 1
-            # self.update_board(board)
             board.update_board(self)
         else:
             print("\n vous ne pouvez pas descendre plus bas")
         
-    
     def move_left(self, board):
         self.clear_previous_emplacement(board)
         if self.x > 1:
             self.x -= 1
-            # self.update_board(board)
             board.update_board(self)
         else:
             print("\n vous ne pouvez pas aller sur la gauche")
@@ -44,46 +41,23 @@ class Character():
         self.clear_previous_emplacement(board)
         if self.x < len(board.board[0])-1:
             self.x += 1
-            # self.update_board(board)
             board.update_board(self)
         else:
             print("\n vous ne pouvez pas vous déplacer sur la droite")
-        
-    
+         
     def clear_previous_emplacement(self, board):
         board.board[self.y][self.x] = " "
     
-    # def update_board(self, board):
-    #     board[self.y][self.x] = self.sign
-    #     board.display_board()
-
     def position(self):
         return (self.x, self.y)
+    
 class Board():
-    # board =  [[" ", "A", "B", "C", "D"], [1," "," "," ", " "], [2," "," "," ", " "], [3," "," ", " ", " "], [4," "," ", " ", " "]]
     alphabet = string.ascii_uppercase
 
     def __init__(self, rows, columns):
         self.rows = rows
         self.columns = columns
         self.board = self.create_board()
-
-    # def create_board(self):
-    #     first_row = [" ", "A", "B", "C", "D"]
-    #     board = []
-    #     row_list = []
-    #     for index in self.rows:
-    #         row_list = []
-    #         for other_index in self.columns:
-    #             if index == 0 and other_index == 0:
-    #                 content = " "
-    #                 row_list.append(content)
-    #             elif index == 0:
-    #                 content = self.alphabet[other_index]
-    #                 row_list.append(content)
-    #             else:
-    #                 content = " "
-    #                 row_list.append(content)
 
     def create_board(self):
         board = []
@@ -132,12 +106,11 @@ board.display_board()
 little_one.move_down(board)
 little_one.move_down(board)
 little_one.move_right(board)
-
+print(little_one)
 little_one.move_left(board)
 little_one.move_left(board)
 little_one.move_right(board)
 
 little_one.move_right(board)
 little_one.move_up(board)
-
-print(f"la position actuelle du personnage est : {little_one.position()}")
+print(little_one)

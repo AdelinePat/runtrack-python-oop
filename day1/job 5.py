@@ -10,6 +10,7 @@ class Point():
     def display_points(self):
         print(f"le point x est à {self.x} sur l'axe horizontal \
               \nle point y est à {self.y} sur l'axe vertical")
+        
     def display_x(self):
         print(f"le point x est à {self.x} sur l'axe horizontal")
     
