@@ -66,13 +66,16 @@ class Board():
             row_list = []
             for other_index in range(self.columns):
                 if index == 0 and other_index == 0:
-                    content = " "
+                    content = "  "
                     row_list.append(content)
                 elif index == 0:
                     content = self.alphabet[other_index-1]
                     row_list.append(content)
                 elif other_index == 0:
-                    content = index
+                    if index < 10:
+                        content = f"{index} "
+                    else:
+                        content = index
                     row_list.append(content)
                 else:
                     content = " "
@@ -88,7 +91,7 @@ class Board():
                 box = f"{self.board[i][j]} | "
                 print(box, end="")
             print("")
-            line = "--+"
+            line = "---+"
             for index in range(len(self.board)-1):
                 line += "---+"
             print(line)
@@ -97,7 +100,7 @@ class Board():
         self.board[character.y][character.x] = character.sign
         self.display_board()
             
-board = Board(6,6)
+board = Board(4,4)
 little_one = Character(3,2)
 board.board[little_one.y][little_one.x] = little_one.sign
 

@@ -9,14 +9,8 @@ class Circle():
         self.circumference = self.get_circumference()
         self.area = self.get_area()
     
-    # def update_information(self):
-    #     self.diameter = self.get_diameter()
-    #     self.circumference = self.get_circumference()
-    #     self.area = self.get_area()
-    
     def change_radius(self, new_radius):
         self.radius = new_radius
-        # self.update_information()
         self.__init__(self.radius)
 
     def get_diameter(self):
