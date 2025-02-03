@@ -1,4 +1,13 @@
 print("\n=== JOB 1 à 3 ===")
+
+class Operation_job1():
+    def __init__(self, number1=12, number2=3):
+        self.number1 = number1
+        self.number2 = number2
+    
+an_operation = Operation_job1()
+print(an_operation)
+
 """
 Job 1 to 3
 """
@@ -56,12 +65,12 @@ class Operation():
             print(message)
 
     def __str__(self): 
-        print(f"{self.number1} {self.operator} {self.number2} = {self.result}")
+        return f"{self.number1} {self.operator} {self.number2} = {self.result}"
 
 operation = Operation(8, 0)
 operation.calculate("/")
-operation.__str__()
+print(operation)
 
 other_operation = Operation(8,2)
 other_operation.multiply()
-other_operation.__str__()
+print(other_operation)
