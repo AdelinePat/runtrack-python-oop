@@ -12,7 +12,7 @@ class Book():
         self.__author = new_author
 
     def set_pages_number(self, new_pages_number):
-        if new_pages_number is int and new_pages_number > 0:
+        if type(new_pages_number) is int and new_pages_number > 0:
             self.__pages_number = new_pages_number
         else:
             print("Vous ne pouvez ajouter que des nombres entier positif au nombre de pages !!")
