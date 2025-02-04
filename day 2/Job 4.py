@@ -16,14 +16,16 @@ class Student():
         return self.__lastname
     
     def get_student_level(self):
-        self.__level = self.__student_eval()
+        # self.__level = self.__student_eval()
         return self.__level
 
     def add_credits(self, add_value):
         if type(add_value) is int and add_value > 0:
             self.__credits += add_value
+            self.__level = self.__student_eval()
         else:
             print("Vous devez entrer un nombre entier positif")
+        
     
     def __student_eval(self):
         if self.__credits >= 90:
@@ -53,6 +55,9 @@ a_student.add_credits(23)
 firstname = a_student.get_firstname()
 lastname = a_student.get_lastname()
 level = a_student.get_student_level()
+credit = a_student.get_credits()
+print(level)
+print(credit)
 print(f"Le nombre de crédits de {firstname} {lastname} est de {a_student.get_credits()} points, son niveau est {level}")
 
 

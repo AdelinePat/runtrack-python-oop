@@ -80,6 +80,11 @@ print(f"Titre : {my_book.get_author()}\
 
 my_book.rent_book()
 print(my_book.get_availability())
+my_book.rent_book()
+print(my_book.get_availability())
 
+
+my_book.return_book()
+print(my_book.get_availability())
 my_book.return_book()
 print(my_book.get_availability())

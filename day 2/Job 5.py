@@ -14,11 +14,14 @@ class Car():
         return self.__tank
 
     def start_running(self):
-        if self.__check_tank() > 5:
-            self.__running = True
-            self.__tank = self.__reduce_gas()
+        if self.__running:
+            print("vous ne pouvez pas démarrer une voiture déjà en marche")
         else:
-            print("Vous n'avez pas assez d'essence pour démarrer")
+            if self.__check_tank() > 5:
+                self.__running = True
+                self.__tank = self.__reduce_gas()
+            else:
+                print("Vous n'avez pas assez d'essence pour démarrer")
         return self.__running
     
     def stop_running(self):
@@ -36,6 +39,7 @@ class Car():
 my_car = Car("Toyota", "Yaris", 1999, 20000)
 print(my_car.get_running())
 print(my_car.get_tank())
+my_car.start_running()
 my_car.start_running()
 print(my_car.get_running())
 my_car.stop_running()
