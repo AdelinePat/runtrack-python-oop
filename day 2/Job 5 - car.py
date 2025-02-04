@@ -13,36 +13,42 @@ class Car():
     def get_tank(self):
         return self.__tank
 
-    def start_running(self):
-        if self.__running:
+    def __set_running(self, new_running):
+        self.__running = new_running
+
+
+    def start(self):
+        if self.get_running():
             print("vous ne pouvez pas démarrer une voiture déjà en marche")
         else:
             if self.__check_tank() > 5:
-                self.__running = True
-                self.__tank = self.__reduce_gas()
+                self.__set_running(True)
+                self.__reduce_gas()
             else:
                 print("Vous n'avez pas assez d'essence pour démarrer")
         return self.__running
     
-    def stop_running(self):
-        self.__running = False
+    def stop(self):
+        if not self.get_running():
+            print("Vous ne pouvez pas arrêter une voiture déjà à l'arrêt")
+        else:
+            self.__set_running(False)
         return self.__running
 
     def __check_tank(self):
         return self.__tank
     
     def __reduce_gas(self):
-        if self.__running:
+        if self.get_running():
             self.__tank -= 5
-        return self.__tank
 
 my_car = Car("Toyota", "Yaris", 1999, 20000)
 print(my_car.get_running())
 print(my_car.get_tank())
-my_car.start_running()
-my_car.start_running()
+my_car.start()
+my_car.start()
 print(my_car.get_running())
-my_car.stop_running()
+my_car.stop()
 print(my_car.get_running())
 print(my_car.get_tank())
 

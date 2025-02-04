@@ -2,65 +2,7 @@ import random
 
 class Command():
     number_id = random.randrange(0, 100)
-    def __init__(self, dishes_dict):
-        self.dishes_dict = dishes_dict
-        self.__dish_list = []
-        self.__status = ""
-        self.__command_id = Command.number_id
-        self.vat = (20/100)
 
-    def add_dish(self, new_dish):
-        if new_dish in self.dishes_dict:
-            self.__dish_list.append(new_dish)
-            self.__status = "in progress"
-        else:
-            print("vous ne pouvez pas commander ce plat")
-    
-    # def __set_command_id(self):
-    #     self.__command_id = random.randrange(0, 100)
-    #     return self.__command_id
-
-    def cancel_command(self):
-        self.__dish_list = []
-        self.__status = "canceled"
-        return self.__status
-    
-    def edit_command_id(self, new_id):
-        self.__command_id += new_id
-
-    def get_command_id(self):
-        return self.__command_id
-    
-    def get_status(self):
-        return self.__status
-    
-    def __calculate_price(self):
-        if len(self.__dish_list) > 0:
-            self.__price = 0
-            for each_dish in self.__dish_list:
-                self.__price += self.dishes_dict[each_dish]
-                self.__status = "done"
-            return self.__price
-        else:
-            self.__price = 0
-            print("Vous n'avez encore rien commandé")
-    
-    def get_priceWithTaxes(self):
-        if self.__status == "canceled":
-            return 0
-        else:
-            self.__price = self.__calculate_price()
-            return self.__price
-
-    def get_priceWithoutTaxes(self):
-        self.__price = self.__calculate_price()
-        if self.__price:
-            self.__priceExludeTaxes = self.__price / (1 + self.vat)
-            return self.__priceExludeTaxes
-        else:
-            return 0
-
-def main():
     dishes_dict = {
         "porc au caramel" : 12.50,
         "nems" : 6,
@@ -77,28 +19,82 @@ def main():
         "tenders et frites": 13
     }
 
-    my_command = Command(dishes_dict)
-    other_command = Command(dishes_dict)
-    third_command = Command(dishes_dict)
+    def __init__(self):
+        self.__dish_list = []
+        self.__status = ""
+        self.__command_id = Command.number_id
+        self.vat = 20 / 100
 
-    command_list = [my_command, other_command, third_command]
+    def add_dish(self, new_dish):
+        if new_dish in Command.dishes_dict:
+            self.__dish_list.append(new_dish)
+            self.__status = "in progress"
+        else:
+            print("vous ne pouvez pas commander ce plat")
+
+    def cancel_command(self):
+        self.__dish_list = []
+        self.__status = "canceled"
+    
+    def edit_command_id(self, new_id):
+        self.__command_id += new_id
+
+    def get_command_id(self):
+        return self.__command_id
+    
+    def get_status(self):
+        return self.__status
+    
+    def __calculate_price(self):
+        if len(self.__dish_list) > 0:
+            price = 0
+            for each_dish in self.__dish_list:
+                price += self.dishes_dict[each_dish]
+                self.__status = "done"
+        else:
+            price = 0
+            print("Vous n'avez encore rien commandé")
+        return price
+    
+    def get_priceWithTaxes(self):
+        if self.__status == "canceled":
+            priceWithTaxes = 0
+        else:
+            priceWithTaxes = self.__calculate_price()
+        return priceWithTaxes
+
+    def get_priceWithoutTaxes(self):
+        price = self.__calculate_price()
+        if price:
+            priceExludeTaxes = price / (1 + self.vat)
+        else:
+            priceExludeTaxes = 0
+
+        return priceExludeTaxes
+
+def main():
+    first_command = Command()
+    second_command = Command()
+    third_command = Command()
+
+    command_list = [first_command, second_command, third_command]
 
     for index in range(len(command_list)):
         command_list[index].edit_command_id(index)
     
-    my_command.add_dish("poulet au curry")
-    my_command.add_dish("ravioli")
-    my_command.add_dish("ravioli")
-    print(f"first command status {my_command.get_status()}")
-    my_command.add_dish("lasagne")
-    my_command.add_dish("burger")
+    first_command.add_dish("poulet au curry")
+    first_command.add_dish("ravioli")
+    first_command.add_dish("ravioli")
+    print(f"first command status {first_command.get_status()}")
+    first_command.add_dish("lasagne")
+    first_command.add_dish("burger")
     
-    other_command.add_dish("tenders et frites")
-    other_command.add_dish("pizza 4 fromages")
-    other_command.add_dish("katsutori")
-    print(f"second command status {other_command.get_status()}")
-    other_command.cancel_command()
-    print(f"second command status {other_command.get_status()}\n")
+    second_command.add_dish("tenders et frites")
+    second_command.add_dish("pizza 4 fromages")
+    second_command.add_dish("katsutori")
+    print(f"second command status {second_command.get_status()}")
+    second_command.cancel_command()
+    print(f"second command status {second_command.get_status()}\n")
 
 
     third_command.add_dish("pâtes au pesto")

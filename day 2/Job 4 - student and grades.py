@@ -52,13 +52,13 @@ a_student.add_credits(7)
 a_student.add_credits("test")
 a_student.add_credits(23)
 
-firstname = a_student.get_firstname()
-lastname = a_student.get_lastname()
-level = a_student.get_student_level()
+# firstname = a_student.get_firstname()
+# lastname = a_student.get_lastname()
+# level = a_student.get_student_level()
 credit = a_student.get_credits()
-print(level)
+# print(level)
 print(credit)
-print(f"Le nombre de crédits de {firstname} {lastname} est de {a_student.get_credits()} points, son niveau est {level}")
+# print(f"Le nombre de crédits de {firstname} {lastname} est de {a_student.get_credits()} points, son niveau est {level}")
 
 
 print(a_student.student_info())

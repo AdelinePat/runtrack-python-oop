@@ -26,25 +26,26 @@ class Book():
     def get_pages_number(self):
         return self.__pages_number
     
-    def get_availability(self):
-        return self.__available
+    def set_availability(self, new_availability):
+        self.__available = new_availability
     
     def check_availability(self):
-        if self.__available:
-            return True
-        else:
-            return False
+        return self.__available
+        # if self.__available:
+        #     return True
+        # else:
+        #     return False
         
     def rent_book(self):
         if self.check_availability():
-            self.__available = False
+            self.set_availability(False)
             print(f"\nVous avez emprunté {self.__title} avec succès")
         else:
             print("\nVous ne pouvez pas emprunter ce livre, attendez qu'il soit rendu pour pouvoir l'emprunter")
 
     def return_book(self):
         if not self.check_availability():
-            self.__available = True
+            self.set_availability(True)
             print(f"\nVous avez rendu {self.__title} avec succès")
         else:
             print("\nVous ne pouvez pas rendre un livre que vous n'avez pas emprunté")
@@ -79,12 +80,12 @@ print(f"Titre : {my_book.get_author()}\
 \nPages : {my_book.get_pages_number()}\n")
 
 my_book.rent_book()
-print(my_book.get_availability())
+print(my_book.check_availability())
 my_book.rent_book()
-print(my_book.get_availability())
+print(my_book.check_availability())
 
 
 my_book.return_book()
-print(my_book.get_availability())
+print(my_book.check_availability())
 my_book.return_book()
-print(my_book.get_availability())
+print(my_book.check_availability())
