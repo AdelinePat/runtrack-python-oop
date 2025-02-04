@@ -5,16 +5,16 @@ print("\n=== JOB 7 ===")
 Job 7
 """
 class Character():
-    def __init__(self, y, x):
+    def __init__(self, y, x, sign="X"):
         self.x = x
         self.y = y
-        self.sign = "X"
+        self.sign = sign
 
     def __str__(self):
         return f"la position actuelle du personnage est : {self.position()}"
     
     def move_up(self, board):
-        self.clear_previous_emplacement(board)
+        board.clear_previous_emplacement(self.x, self.y)
         if self.y > 1:
             self.y -= 1
             board.update_board(self)
@@ -22,7 +22,7 @@ class Character():
             print("\n vous ne pouvez pas monter plus haut")
         
     def move_down(self, board):
-        self.clear_previous_emplacement(board)
+        board.clear_previous_emplacement(self.x, self.y)
         if self.y < len(board.board)-1:
             self.y += 1
             board.update_board(self)
@@ -30,7 +30,7 @@ class Character():
             print("\n vous ne pouvez pas descendre plus bas")
         
     def move_left(self, board):
-        self.clear_previous_emplacement(board)
+        board.clear_previous_emplacement(self.x, self.y)
         if self.x > 1:
             self.x -= 1
             board.update_board(self)
@@ -38,15 +38,12 @@ class Character():
             print("\n vous ne pouvez pas aller sur la gauche")
         
     def move_right(self, board):
-        self.clear_previous_emplacement(board)
+        board.clear_previous_emplacement(self.x, self.y)
         if self.x < len(board.board[0])-1:
             self.x += 1
             board.update_board(self)
         else:
             print("\n vous ne pouvez pas vous déplacer sur la droite")
-         
-    def clear_previous_emplacement(self, board):
-        board.board[self.y][self.x] = " "
     
     def position(self):
         return (self.x, self.y)
@@ -58,6 +55,9 @@ class Board():
         self.rows = rows +1
         self.columns = columns +1
         self.board = self.create_board()
+    
+    def clear_previous_emplacement(self, x, y):
+        self.board[y][x] = " "
 
     def create_board(self):
         board = []
@@ -83,16 +83,15 @@ class Board():
             board.append(row_list)
         return board
 
-
     def display_board(self):
         print("\n")
-        for i in range(len(self.board)):
-            for j in range(len(self.board)):
+        for i in range(self.rows):
+            for j in range(self.columns):
                 box = f"{self.board[i][j]} | "
                 print(box, end="")
             print("")
             line = "---+"
-            for index in range(len(self.board)-1):
+            for index in range(self.columns-1):
                 line += "---+"
             print(line)
 
@@ -100,7 +99,7 @@ class Board():
         self.board[character.y][character.x] = character.sign
         self.display_board()
             
-board = Board(6,6)
+board = Board(5,5)
 little_one = Character(3,2)
 board.board[little_one.y][little_one.x] = little_one.sign
 

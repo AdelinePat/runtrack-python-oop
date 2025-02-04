@@ -10,7 +10,8 @@ class Product():
         self.price = self.calculate_full_price()
 
     def calculate_full_price(self):
-        full_price = self.priceExludeTaxes + (self.priceExludeTaxes * self.VAT) 
+        # full_price = self.priceExludeTaxes + (self.priceExludeTaxes * self.VAT)
+        full_price = self.priceExludeTaxes * ( 1 + self.VAT)
         return full_price
     
     def change_name(self, new_name):
