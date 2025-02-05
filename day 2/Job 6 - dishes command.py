@@ -23,7 +23,7 @@ class Command():
         self.__dish_list = []
         self.__status = ""
         self.__command_id = Command.number_id
-        self.vat = 20 / 100
+        self.__vat = 20 / 100
 
     def add_dish(self, new_dish):
         if new_dish in Command.dishes_dict:
@@ -31,6 +31,8 @@ class Command():
             self.__status = "in progress"
         else:
             print("vous ne pouvez pas commander ce plat")
+    def set_vat(self, new_vat):
+        self.__vat = new_vat / 100
 
     def cancel_command(self):
         self.__dish_list = []
@@ -66,11 +68,26 @@ class Command():
     def get_priceWithoutTaxes(self):
         price = self.__calculate_price()
         if price:
-            priceExludeTaxes = price / (1 + self.vat)
+            priceExludeTaxes = price / (1 + self.__vat)
         else:
             priceExludeTaxes = 0
 
         return priceExludeTaxes
+
+    def get_all_dishes_with_price(self):
+        pass
+
+    def display_command(self):
+        all_dish_displayed = ""
+        for dish in self.__dish_list:
+            all_dish_displayed += "-" + dish + " " + str(Command.dishes_dict[dish]) + "€" + "\n"
+
+        return f"=== COMMAND n°{self.get_command_id()- int(Command.number_id) +1} ===\
+            \ncommand_id : {self.get_command_id()}\
+            \n{all_dish_displayed}\
+            \nPrice without taxes : {round(self.get_priceWithoutTaxes(), 2)} €\
+            \nPrice with taxes : {round(self.get_priceWithTaxes(), 2)} €\
+            \ncommand status : {self.get_status()}\n\n"
 
 def main():
     first_command = Command()
@@ -88,6 +105,8 @@ def main():
     print(f"first command status {first_command.get_status()}")
     first_command.add_dish("lasagne")
     first_command.add_dish("burger")
+
+    first_command.set_vat(10)
     
     second_command.add_dish("tenders et frites")
     second_command.add_dish("pizza 4 fromages")
@@ -96,15 +115,29 @@ def main():
     second_command.cancel_command()
     print(f"second command status {second_command.get_status()}\n")
 
-
     third_command.add_dish("pâtes au pesto")
     third_command.add_dish("lasagne")
     third_command.add_dish("beignets d'aubergine")
 
     for command in command_list:
-        print(f"=== COMMAND n°{command.get_command_id()- int(Command.number_id) +1} ===\
-            \nPrice with taxes : {command.get_priceWithTaxes()}\
-            \nPrice without taxes : {command.get_priceWithoutTaxes()}\
-            \ncommand_id : {command.get_command_id()}\
-            \ncommand status : {command.get_status()}\n")
+        print(command.display_command())
 main()
+
+# e = [1,2,3]
+# new_e = 2*e #immuable
+# new_e_bis = e
+# print(e)
+# print(new_e)
+# print(new_e_bis)
+# new_e.append(4)
+# for item in new_e_bis:
+#     new_e_bis.pop()
+
+# for item in new_e:
+#     new_e.pop()
+
+# new_e.append("mdr")
+# print("\n")
+# print(e)
+# print(new_e)
+# print(new_e_bis)
