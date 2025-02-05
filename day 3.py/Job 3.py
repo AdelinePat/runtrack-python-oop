@@ -9,10 +9,16 @@ class ToDoList():
         self.list = []
 
     def add_task(self, new_task):
-        self.list.append(new_task)
+        if new_task not in self.list:
+            self.list.append(new_task)
+        else:
+            print("vous ne pouvez pas ajouté deux fois la même tâche à la liste")
     
     def remove_task(self, task):
-        self.list.remove(task)
+        if task in self.list:
+            self.list.remove(task)
+        else:
+            print("vous ne pouvez pas supprimer une tâche qui n'est pas dans la liste")
 
     def set_task_status(self, task):
         if task in self.list:
@@ -45,10 +51,11 @@ sport = Task("faire du sport", "il faut faire de l'exercice régulièrement", "t
 exercice = Task("runtrack", "il faut finir sa runtrack du jour")
 lessive = Task("lessive", "il faut faire la lessive au plus vite")
 courses = Task("faire les courses", "il faut faire les courses pour pouvoir manger !")
-
+bidule = Task("bidule", "olol")
 
 to_do_list = ToDoList()
 to_do_list.add_task(eat)
+to_do_list.add_task(sleep)
 to_do_list.add_task(sleep)
 to_do_list.add_task(sport)
 to_do_list.add_task(exercice)
@@ -64,7 +71,7 @@ to_do_list.set_task_status(exercice)
 print(to_do_list.display_tasks_list())
 print(to_do_list.filter_list("to do"))
 
-to_do_list.remove_task(sleep)
+to_do_list.remove_task(bidule)
 print(to_do_list.display_tasks_list())
 
 
