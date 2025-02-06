@@ -8,7 +8,6 @@ class Player():
         self.yellow_card = yellow_card
         self.red_card = red_card
 
-
     def score_a_goal(self):
         self.goal += 1
 
@@ -17,7 +16,7 @@ class Player():
 
     def set_yellow_card(self):
         self.yellow_card += 1
-    
+
     def set_red_card(self):
         self.red_card += 1
     
@@ -34,7 +33,10 @@ class SoccerTeam():
         self.player_list = []
 
     def add_player(self, player):
-        self.player_list.append(player)
+        if player not in self.player_list:
+            self.player_list.append(player)
+        else:
+            print("vous ne pouvez pas ajouter un joueur qui est déjà dans l'équipe")
 
     def get_players_statistics(self):
         for player in self.player_list:
@@ -42,7 +44,6 @@ class SoccerTeam():
 
     def update_player_statistics(self):
         pass
-
 
 a_player = Player("John", 9, "avant-centre", 0, 0, 0, 0)
 
@@ -66,6 +67,7 @@ player_4 = Player("Sam", 10, "millieu offensif", 0, 0, 0, 0)
 
 team = SoccerTeam("Florence")
 team.add_player(a_player)
+team.add_player(player_2)
 team.add_player(player_2)
 team.add_player(player_3)
 team.add_player(player_4)

@@ -15,9 +15,11 @@ class Rectangle():
     def get_width(self):
         return self.__width
 
-
 my_rectangle = Rectangle(10, 5)
 print(f"Longueur : {my_rectangle.get_length()} \nLargeur : {my_rectangle.get_width()}\n")
 my_rectangle.set_length(12)
 my_rectangle.set_width(8)
 print(f"Longueur : {my_rectangle.get_length()} \nLargeur : {my_rectangle.get_width()}")
+
+my_rectangle.set_width(22)
+print(my_rectangle.get_width())
