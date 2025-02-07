@@ -10,7 +10,7 @@ class Character():
             if luck > 60:
                 ennemy.life_count -= 1
                 print(f"L'attaque de {self.name.upper()} sur {ennemy.name.upper()} a réussi !")
-            elif luck in range(95, 101):
+            elif luck > 95:
                 ennemy.life_count -= 2
                 print(f"L'attaque de {self.name.upper()} sur {ennemy.name.upper()} a réussi !")
             else:
@@ -19,7 +19,7 @@ class Character():
 
     def heal(self):
         if self.life_count <= 1 :
-            if random.randrange(0,100) > 40:
+            if random.randrange(0,100) > 50:
                 self.life_count += 1
                 print(f"{self.name} a pris une potion de soin et récupère 1PV")
 
@@ -99,7 +99,7 @@ class Game():
                 self.game_over_message()
 
 new_game = Game()
-print(new_game.ennemy)
+# print(new_game.ennemy)
 # new_game.player.attack(new_game.ennemy, new_game)
 # new_game.player.attack(new_game.ennemy, new_game)
 # new_game.ennemy.attack(new_game.player, new_game)
