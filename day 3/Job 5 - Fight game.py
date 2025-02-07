@@ -18,7 +18,7 @@ class Character():
             print(self)
 
     def heal(self):
-        if self.life_count <= 1 :
+        if self.life_count <= 1:
             if random.randrange(0,100) > 50:
                 self.life_count += 1
                 print(f"{self.name} a pris une potion de soin et récupère 1PV")
@@ -79,6 +79,7 @@ class Game():
             return self.player_turn()
         else:
             return player_choice
+        
     def game_loop(self):
         is_game_over  = self.is_game_over()
         round = 1
@@ -97,6 +98,7 @@ class Game():
 
             if is_game_over:
                 self.game_over_message()
+
 
 new_game = Game()
 # print(new_game.ennemy)
